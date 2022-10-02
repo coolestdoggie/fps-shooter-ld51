@@ -9,9 +9,9 @@ public class FinalScoreUI : MonoBehaviour
     
     public Text TargetDestroyed;
     public Text Penalty;
-    public Text TimeSpent;
-    public Text FinalTime;
-    public Text FinalScore;
+   // public Text TimeSpent;
+    //public Text FinalTime;
+    //public Text FinalScore;
     
     void Awake()
     {
@@ -30,10 +30,10 @@ public class FinalScoreUI : MonoBehaviour
         float penaltyAmount = GameSystem.Instance.TargetMissedPenalty * missedTarget;
             
         TargetDestroyed.text = targetDestroyed + "/" + totalTarget;
-        TimeSpent.text = time.ToString("N2") + "s";
+       // TimeSpent.text = time.ToString("N2") + "s";
         Penalty.text = missedTarget +"*"+ GameSystem.Instance.TargetMissedPenalty.ToString("N2")+"s = "+ penaltyAmount.ToString("N2") + "s";
-        FinalTime.text = (time + penaltyAmount).ToString("N2") + "s";
+        //FinalTime.text = (time + penaltyAmount).ToString("N2") + "s";
 
-        FinalScore.text = GameSystem.Instance.Score.ToString("N");
+        //FinalScore.text = GameSystem.Instance.Score.ToString("N");
     }
 }
