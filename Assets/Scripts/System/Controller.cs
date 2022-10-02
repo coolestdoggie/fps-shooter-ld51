@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 #if UNITY_EDITOR
@@ -314,5 +315,24 @@ public class Controller : MonoBehaviour
     public void PlayFootstep()
     {
         FootstepPlayer.PlayRandom();
+    }
+
+    public void ApplySpeedBoost(float time, float boostMultiplier)
+    {
+        StartCoroutine(ApplySpeedBoostCoroutine(time, boostMultiplier));
+    }
+
+    private IEnumerator ApplySpeedBoostCoroutine(float time, float boostMultiplier)
+    {
+        float oldWalkingSpeed = PlayerSpeed;
+        float oldRunningSpeed = RunningSpeed;
+        
+        PlayerSpeed *= boostMultiplier;
+        RunningSpeed *= boostMultiplier;
+
+        yield return new WaitForSeconds(time);
+
+        PlayerSpeed = oldWalkingSpeed;
+        RunningSpeed = oldRunningSpeed;
     }
 }

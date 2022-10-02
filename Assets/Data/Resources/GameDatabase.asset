@@ -21,4 +21,6 @@ MonoBehaviour:
       id: 2
     - name: Healing
       id: 4
+    - name: Adrenaline
+      id: 8
   episodes: []

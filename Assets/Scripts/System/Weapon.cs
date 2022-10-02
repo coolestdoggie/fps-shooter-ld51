@@ -307,6 +307,10 @@ public class Weapon : MonoBehaviour
         {
             m_Owner.GetComponent<Target>().Heal((int)damage);
         }
+        else if (ammoType == 8) //Energy drink
+        {
+            m_Owner.ApplySpeedBoost(5, damage);
+        }
     }
 
     //For optimization, when a projectile is "destroyed" it is instead disabled and return to the weapon for reuse.
