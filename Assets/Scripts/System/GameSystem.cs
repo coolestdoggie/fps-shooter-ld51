@@ -31,6 +31,8 @@ public class GameSystem : MonoBehaviour
     int m_TargetCount;
     int m_TargetDestroyed;
 
+    public bool GameRunning { get; private set; }
+
     //int m_Score = 0;
 
     void Awake()
@@ -42,12 +44,19 @@ public class GameSystem : MonoBehaviour
         }
         
         PoolSystem.Create();
+        
     }
 
-    void Start()
+    public void StartGame()
     {
+        GameRunning = true;
+        
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        
         WorldAudioPool.Init();
         
+
         RetrieveTargetsCount();
         
 #if UNITY_EDITOR
@@ -78,6 +87,12 @@ public class GameSystem : MonoBehaviour
 #endif
         
         GameSystemInfo.Instance.UpdateTimer(0);
+    }
+    
+    void Start()
+    {
+        StartScreenUI.Instance.Display();
+
     }
 
     public void ResetTimer()
@@ -170,11 +185,16 @@ public class GameSystem : MonoBehaviour
         //m_Score = 0;
 
         //GameSystemInfo.Instance.UpdateScore(0);
-        LevelSelectionUI.Instance.Init();
+        // LevelSelectionUI.Instance.Init();
     }
 
     void Update()
     {
+        if (!GameRunning)
+        {
+            return;
+        }
+        
         if (m_TimerRunning)
         {
             m_Timer -= Time.deltaTime;
