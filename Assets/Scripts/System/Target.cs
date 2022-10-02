@@ -8,6 +8,7 @@ public class Target : MonoBehaviour
 {
     public float health = 5.0f;
     public int pointValue;
+    public bool isPlayer;
 
     public ParticleSystem DestroyedEffect;
 
@@ -18,7 +19,7 @@ public class Target : MonoBehaviour
     public bool Destroyed => m_Destroyed;
 
     bool m_Destroyed = false;
-    float m_CurrentHealth;
+    public float m_CurrentHealth;
 
     void Awake()
     {
@@ -27,6 +28,7 @@ public class Target : MonoBehaviour
 
     void Start()
     {
+        isPlayer = CompareTag("Player");
         if(DestroyedEffect)
             PoolSystem.Instance.InitPool(DestroyedEffect, 16);
         

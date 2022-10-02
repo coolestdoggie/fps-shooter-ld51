@@ -560,6 +560,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   health: 100
   pointValue: 0
+  isPlayer: 1
   DestroyedEffect: {fileID: 0}
   HitPlayer: {fileID: 0}
   IdleSource: {fileID: 0}
