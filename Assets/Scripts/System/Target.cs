@@ -70,4 +70,10 @@ public class Target : MonoBehaviour
        
         GameSystem.Instance.TargetDestroyed(pointValue);
     }
+
+    public void Heal(int toHeal)
+    {
+        m_CurrentHealth += toHeal;
+        health = Mathf.Min(m_CurrentHealth, health);
+    }
 }

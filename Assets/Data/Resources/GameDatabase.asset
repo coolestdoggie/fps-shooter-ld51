@@ -19,4 +19,6 @@ MonoBehaviour:
       id: 0
     - name: Pill
       id: 2
+    - name: Healing
+      id: 4
   episodes: []

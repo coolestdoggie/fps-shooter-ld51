@@ -2315,7 +2315,7 @@ GameObject:
   - component: {fileID: 6274258826675327207}
   - component: {fileID: 5020101106145072572}
   m_Layer: 9
-  m_Name: Syringe
+  m_Name: Med Kit
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -2351,12 +2351,12 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   triggerType: 1
-  weaponType: 1
+  weaponType: 2
   fireRate: 0.3
   reloadTime: 1.3
   clipSize: 1
-  damage: 1
-  ammoType: 2
+  damage: 10
+  ammoType: 4
   projectilePrefab: {fileID: 672515860094952321, guid: 4cfffa2f875e16444a1aa80acb915297,
     type: 3}
   projectileLaunchForce: 600
