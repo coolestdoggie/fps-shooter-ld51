@@ -319,6 +319,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: BombSlime
       objectReference: {fileID: 0}
+    - target: {fileID: 2780501058748862415, guid: 67fafbb2f43a34a44a067a30a5a8b7d0,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3026576654713740985, guid: 67fafbb2f43a34a44a067a30a5a8b7d0,
         type: 3}
       propertyPath: m_RootOrder
@@ -1411,6 +1416,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: MeleeSlime
+      objectReference: {fileID: 0}
+    - target: {fileID: 3360867265583641204, guid: ba91b25dfbcb54f4e8a2e8ef63e25b6d,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: ba91b25dfbcb54f4e8a2e8ef63e25b6d, type: 3}
