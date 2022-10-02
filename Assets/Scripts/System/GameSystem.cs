@@ -25,7 +25,7 @@ public class GameSystem : MonoBehaviour
     public int DestroyedTarget => m_TargetDestroyed;
     public int Score => m_Score;
 
-    float m_Timer;
+    float m_Timer = 10;
     bool m_TimerRunning = false;
     
     int m_TargetCount;
@@ -82,7 +82,7 @@ public class GameSystem : MonoBehaviour
 
     public void ResetTimer()
     {
-        m_Timer = 0.0f;
+        m_Timer = 10f;
     }
     
     public void StartTimer()
@@ -177,11 +177,16 @@ public class GameSystem : MonoBehaviour
     {
         if (m_TimerRunning)
         {
-            m_Timer += Time.deltaTime;
+            m_Timer -= Time.deltaTime;
+            
+            if (m_Timer <= 0)
+            {
+                Controller.Instance.ChangeWeapon();
+                ResetTimer();
+            }
             
             GameSystemInfo.Instance.UpdateTimer(m_Timer);
         }
-
         Transform playerTransform = Controller.Instance.transform;
         
         
@@ -192,14 +197,14 @@ public class GameSystem : MonoBehaviour
             FullscreenMap.Instance.UpdateForPlayerTransform(playerTransform);
     }
 
-    public float GetFinalTime()
-    {
-        int missedTarget = m_TargetCount - m_TargetDestroyed;
-
-        float penalty = missedTarget * TargetMissedPenalty;
-
-        return m_Timer + penalty;
-    }
+    // public float GetFinalTime()
+    // {
+    //     int missedTarget = m_TargetCount - m_TargetDestroyed;
+    //
+    //     float penalty = missedTarget * TargetMissedPenalty;
+    //
+    //     return m_Timer + penalty;
+    // }
 
     
     public void TargetDestroyed(int score)
