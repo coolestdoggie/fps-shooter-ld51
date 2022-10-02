@@ -23,7 +23,7 @@ public class GameSystem : MonoBehaviour
     public float RunTime => m_Timer;
     public int TargetCount => m_TargetCount;
     public int DestroyedTarget => m_TargetDestroyed;
-    public int Score => m_Score;
+    //public int Score => m_Score;
 
     float m_Timer = 10;
     bool m_TimerRunning = false;
@@ -31,7 +31,9 @@ public class GameSystem : MonoBehaviour
     int m_TargetCount;
     int m_TargetDestroyed;
 
-    int m_Score = 0;
+    public bool GameRunning { get; private set; }
+
+    //int m_Score = 0;
 
     void Awake()
     {
@@ -42,12 +44,19 @@ public class GameSystem : MonoBehaviour
         }
         
         PoolSystem.Create();
+        
     }
 
-    void Start()
+    public void StartGame()
     {
+        GameRunning = true;
+        
+        Cursor.lockState = CursorLockMode.Locked;
+        Cursor.visible = false;
+        
         WorldAudioPool.Init();
         
+
         RetrieveTargetsCount();
         
 #if UNITY_EDITOR
@@ -78,6 +87,12 @@ public class GameSystem : MonoBehaviour
 #endif
         
         GameSystemInfo.Instance.UpdateTimer(0);
+    }
+    
+    void Start()
+    {
+        StartScreenUI.Instance.Display();
+
     }
 
     public void ResetTimer()
@@ -167,14 +182,19 @@ public class GameSystem : MonoBehaviour
 
         m_TargetCount = count;
         m_TargetDestroyed = 0;
-        m_Score = 0;
+        //m_Score = 0;
 
-        GameSystemInfo.Instance.UpdateScore(0);
-        LevelSelectionUI.Instance.Init();
+        //GameSystemInfo.Instance.UpdateScore(0);
+        // LevelSelectionUI.Instance.Init();
     }
 
     void Update()
     {
+        if (!GameRunning)
+        {
+            return;
+        }
+        
         if (m_TimerRunning)
         {
             m_Timer -= Time.deltaTime;
@@ -210,8 +230,8 @@ public class GameSystem : MonoBehaviour
     public void TargetDestroyed(int score)
     {
         m_TargetDestroyed += 1;
-        m_Score += score;
+        //m_Score += score;
 
-        GameSystemInfo.Instance.UpdateScore(m_Score);
+        //GameSystemInfo.Instance.UpdateScore(m_Score);
     }
 }

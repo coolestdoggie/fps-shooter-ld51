@@ -70,8 +70,7 @@ public class Controller : MonoBehaviour
     
     void Start()
     {
-        Cursor.lockState = CursorLockMode.Locked;
-        Cursor.visible = false;
+        
 
         m_IsPaused = false;
         m_Grounded = true;
@@ -105,6 +104,11 @@ public class Controller : MonoBehaviour
 
     void Update()
     {
+        if (!GameSystem.Instance.GameRunning)
+        {
+            return;
+        }
+        
         if (CanPause && Input.GetButtonDown("Menu"))
         {
             PauseMenu.Instance.Display();
