@@ -1,11 +1,15 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Numerics;
 using UnityEngine;
+using Random = UnityEngine.Random;
 using Vector3 = UnityEngine.Vector3;
 
 public class Target : MonoBehaviour
 {
+    public event Action GotDamage;
+    
     public float health = 5.0f;
     public int pointValue;
 
@@ -18,7 +22,7 @@ public class Target : MonoBehaviour
     public bool Destroyed => m_Destroyed;
 
     bool m_Destroyed = false;
-    float m_CurrentHealth;
+    public float CurrentHealth { get; private set; }
 
     void Awake()
     {
@@ -30,19 +34,20 @@ public class Target : MonoBehaviour
         if(DestroyedEffect)
             PoolSystem.Instance.InitPool(DestroyedEffect, 16);
         
-        m_CurrentHealth = health;
+        CurrentHealth = health;
         if(IdleSource != null)
             IdleSource.time = Random.Range(0.0f, IdleSource.clip.length);
     }
 
     public void Got(float damage)
     {
-        m_CurrentHealth -= damage;
+        CurrentHealth -= damage;
+        OnGotDamage();
         
         if(HitPlayer != null)
             HitPlayer.PlayRandom();
         
-        if(m_CurrentHealth > 0)
+        if(CurrentHealth > 0)
             return;
 
         Vector3 position = transform.position;
@@ -73,7 +78,12 @@ public class Target : MonoBehaviour
 
     public void Heal(int toHeal)
     {
-        m_CurrentHealth += toHeal;
-        health = Mathf.Min(m_CurrentHealth, health);
+        CurrentHealth += toHeal;
+        health = Mathf.Min(CurrentHealth, health);
+    }
+
+    protected virtual void OnGotDamage()
+    {
+        GotDamage?.Invoke();
     }
 }
