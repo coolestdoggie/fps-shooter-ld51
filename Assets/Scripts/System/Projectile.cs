@@ -7,6 +7,8 @@ public class Projectile : MonoBehaviour
     static Collider[] s_SphereCastPool = new Collider[32];
     
     public bool DestroyedOnHit = true;
+    public bool shouldDamagePlayer = true;
+    public bool shouldDamageEnemy = true;
     public float TimeToDestroyed = 4.0f;
     public float ReachRadius = 5.0f;
     public float damage = 10.0f;
@@ -58,8 +60,15 @@ public class Projectile : MonoBehaviour
         for (int i = 0; i < count; ++i)
         {
             Target t = s_SphereCastPool[i].GetComponent<Target>();
-            
-            t.Got(damage);
+            if (t.isPlayer && shouldDamagePlayer)
+            {
+                t.Got(damage);
+            }
+
+            if (!t.isPlayer && shouldDamageEnemy)
+            {
+                t.Got(damage);
+            }
         }
         
         gameObject.SetActive(false);

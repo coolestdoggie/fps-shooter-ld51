@@ -10,7 +10,12 @@ public class MoveAI : MonoBehaviour
         _agent = GetComponent<NavMeshAgent>();
         _player = GameObject.FindGameObjectWithTag("Player");
     }
-    void Update(){
+    void Update()
+    {
+        if (!GameSystem.Instance.GameRunning)
+        {
+            return;
+        }    
         _agent.destination = _player.transform.position;
     }
 }
