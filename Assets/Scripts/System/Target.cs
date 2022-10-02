@@ -8,7 +8,7 @@ using Vector3 = UnityEngine.Vector3;
 
 public class Target : MonoBehaviour
 {
-    public event Action GotDamage;
+    public event Action HpUpdated;
     
     public float health = 5.0f;
     public int pointValue;
@@ -44,7 +44,7 @@ public class Target : MonoBehaviour
     public void Got(float damage)
     {
         CurrentHealth -= damage;
-        OnGotDamage();
+        OnHpUpdated();
         
         if(HitPlayer != null)
             HitPlayer.PlayRandom();
@@ -82,10 +82,11 @@ public class Target : MonoBehaviour
     {
         CurrentHealth += toHeal;
         health = Mathf.Min(CurrentHealth, health);
+        OnHpUpdated();
     }
 
-    protected virtual void OnGotDamage()
+    protected virtual void OnHpUpdated()
     {
-        GotDamage?.Invoke();
+        HpUpdated?.Invoke();
     }
 }

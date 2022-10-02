@@ -1,5 +1,5 @@
-using System;
 using System.Collections;
+using DG.Tweening;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -14,16 +14,18 @@ public class HpBar : MonoBehaviour
         yield return new WaitForSeconds(0.5f);
         
         playerTarget = Controller.Instance.GetComponent<Target>();
-        playerTarget.GotDamage += UpdateBar;
+        playerTarget.HpUpdated += UpdateBar;
     }
     
     private void OnDisable()
     {
-        playerTarget.GotDamage -= UpdateBar;
+        playerTarget.HpUpdated -= UpdateBar;
     }
     
     private void UpdateBar()
     {
-        fillImage.fillAmount = playerTarget.CurrentHealth / playerTarget.health;
+        float newHp = playerTarget.CurrentHealth / playerTarget.health;
+        DOTween.To(() => fillImage.fillAmount, x => fillImage.fillAmount = x, newHp, 0.2f)
+            .SetEase(Ease.InOutSine); 
     }
 }
