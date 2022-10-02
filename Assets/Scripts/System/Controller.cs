@@ -266,7 +266,7 @@ public class Controller : MonoBehaviour
         }
     }
 
-    void ChangeWeapon()
+    public void ChangeWeapon()
     {
         if (m_CurrentWeapon != -1)
         {
