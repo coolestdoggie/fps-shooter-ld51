@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -7,14 +8,12 @@ public class HpBar : MonoBehaviour
     [SerializeField] private Image fillImage;
 
     private Target playerTarget;
-    
-    private void Awake()
-    {
-        playerTarget = Controller.Instance.GetComponent<Target>();
-    }
 
-    private void OnEnable()
+    private IEnumerator Start()
     {
+        yield return new WaitForSeconds(0.5f);
+        
+        playerTarget = Controller.Instance.GetComponent<Target>();
         playerTarget.GotDamage += UpdateBar;
     }
     

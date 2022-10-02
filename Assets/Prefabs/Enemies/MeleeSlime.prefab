@@ -118,7 +118,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   launchForce: 40
-  cooldown: 2
+  cooldown: 1
   launchCount: 1
   launchDistance: 2
   spreadAngle: 1
