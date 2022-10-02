@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 #if UNITY_EDITOR
 using UnityEditor;
 #endif
@@ -90,7 +91,7 @@ public class Controller : MonoBehaviour
         }
         
         m_CurrentWeapon = -1;
-        ChangeWeapon(0);
+        ChangeWeapon();
 
         for (int i = 0; i < startingAmmo.Length; ++i)
         {
@@ -193,15 +194,15 @@ public class Controller : MonoBehaviour
             if (Input.GetButton("Reload"))
                 m_Weapons[m_CurrentWeapon].Reload();
 
-            if (Input.GetAxis("Mouse ScrollWheel") < 0)
-            {
-                ChangeWeapon(m_CurrentWeapon - 1);
-            }
-            else if (Input.GetAxis("Mouse ScrollWheel") > 0)
-            {
-                ChangeWeapon(m_CurrentWeapon + 1);
-            }
-            
+            // if (Input.GetAxis("Mouse ScrollWheel") < 0)
+            // {
+            //     ChangeWeapon(m_CurrentWeapon - 1);
+            // }
+            // else if (Input.GetAxis("Mouse ScrollWheel") > 0)
+            // {
+            //     ChangeWeapon(m_CurrentWeapon + 1);
+            // }
+            //
             //Key input to change weapon
 
             for (int i = 0; i < 10; ++i)
@@ -216,7 +217,7 @@ public class Controller : MonoBehaviour
 
                     if (num < m_Weapons.Count)
                     {
-                        ChangeWeapon(num);
+                        ChangeWeapon();
                     }
                 }
             }
@@ -265,7 +266,7 @@ public class Controller : MonoBehaviour
         }
     }
 
-    void ChangeWeapon(int number)
+    void ChangeWeapon()
     {
         if (m_CurrentWeapon != -1)
         {
@@ -273,7 +274,8 @@ public class Controller : MonoBehaviour
             m_Weapons[m_CurrentWeapon].gameObject.SetActive(false);
         }
 
-        m_CurrentWeapon = number;
+        //m_CurrentWeapon = number;
+        m_CurrentWeapon = Random.Range(1, m_Weapons.Count + 1);
 
         if (m_CurrentWeapon < 0)
             m_CurrentWeapon = m_Weapons.Count - 1;
