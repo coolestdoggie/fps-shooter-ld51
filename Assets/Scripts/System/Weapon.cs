@@ -21,7 +21,8 @@ public class Weapon : MonoBehaviour
     public enum WeaponType
     {
         Raycast,
-        Projectile
+        Projectile,
+        ApplyingToYourself
     }
 
     public enum WeaponState
@@ -227,6 +228,10 @@ public class Weapon : MonoBehaviour
                 RaycastShot();
             }
         }
+        else if (weaponType == WeaponType.ApplyingToYourself)
+        {
+            ApplyToYourself();
+        }
         else
         {
             ProjectileShot();
@@ -293,6 +298,14 @@ public class Weapon : MonoBehaviour
             
             p.gameObject.SetActive(true);
             p.Launch(this, dir, projectileLaunchForce);
+        }
+    }
+
+    private void ApplyToYourself()
+    {
+        if (ammoType == 4) //Med kit
+        {
+            m_Owner.GetComponent<Target>().Heal((int)damage);
         }
     }
 
