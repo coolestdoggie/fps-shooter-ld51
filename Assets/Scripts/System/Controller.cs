@@ -206,22 +206,22 @@ public class Controller : MonoBehaviour
             //
             //Key input to change weapon
 
-            for (int i = 0; i < 10; ++i)
-            {
-                if (Input.GetKeyDown(KeyCode.Alpha0 + i))
-                {
-                    int num = 0;
-                    if (i == 0)
-                        num = 10;
-                    else
-                        num = i - 1;
-
-                    if (num < m_Weapons.Count)
-                    {
-                        ChangeWeapon();
-                    }
-                }
-            }
+            // for (int i = 0; i < 10; ++i)
+            // {
+            //     if (Input.GetKeyDown(KeyCode.Alpha0 + i))
+            //     {
+            //         int num = 0;
+            //         if (i == 0)
+            //             num = 10;
+            //         else
+            //             num = i - 1;
+            //
+            //         if (num < m_Weapons.Count)
+            //         {
+            //             ChangeWeapon();
+            //         }
+            //     }
+            // }
         }
 
         // Fall down / gravity
