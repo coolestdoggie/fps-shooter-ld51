@@ -503,6 +503,7 @@ MonoBehaviour:
   - {fileID: 521019951643201760, guid: 6ccef5746774181428e77a752629038e, type: 3}
   - {fileID: 6274258826675327207, guid: 3c51c5106fe6b4b41a5f1075e13d05d6, type: 3}
   - {fileID: 6274258826675327207, guid: 942643947e861054da6d9ccb8cc568b1, type: 3}
+  - {fileID: 6274258826675327207, guid: ea8c05f92b120364593feff2e66f0bbb, type: 3}
   startingAmmo:
   - ammoType: 0
     amount: 80
