@@ -8,7 +8,7 @@ public class GameSystemInfo : MonoBehaviour
     public static GameSystemInfo Instance { get; private set; }
     
     public Text TimerText;
-    public Text ScoreText;
+    //public Text ScoreText;
     
     void Awake()
     {
@@ -20,8 +20,8 @@ public class GameSystemInfo : MonoBehaviour
         TimerText.text = time.ToString("N1");
     }
 
-    public void UpdateScore(int score)
-    {
-        ScoreText.text = score.ToString();
-    }
+    // public void UpdateScore(int score)
+    // {
+    //     ScoreText.text = score.ToString();
+    // }
 }
