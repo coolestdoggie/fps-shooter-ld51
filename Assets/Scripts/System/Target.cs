@@ -73,7 +73,14 @@ public class Target : MonoBehaviour
 
         m_Destroyed = true;
         
+        if (!isPlayer)
+        {
         gameObject.SetActive(false);
+        }
+        else
+        {
+            FinalScoreUI.Instance.Display();
+        }
        
         GameSystem.Instance.TargetDestroyed(pointValue);
     }
