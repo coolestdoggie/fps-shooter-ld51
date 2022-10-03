@@ -1,4 +1,5 @@
-﻿using UnityEngine;
+﻿using UnityEditor;
+using UnityEngine;
 using UnityEngine.SceneManagement;
 
 public class RestartLevel : MonoBehaviour
@@ -8,9 +9,12 @@ public class RestartLevel : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    // public void NextLevel()
-    // {
-    //     UIAudioPlayer.PlayPositive();
-    //     GameSystem.Instance.NextLevel();
-    // }
+    public void ExitGame()
+    {
+#if UNITY_EDITOR
+        EditorApplication.isPlaying = false;
+#else
+        Application.Quit();
+#endif
+    }
 }
