@@ -322,7 +322,7 @@ PrefabInstance:
     - target: {fileID: 2780501058748862415, guid: 67fafbb2f43a34a44a067a30a5a8b7d0,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3026576654713740985, guid: 67fafbb2f43a34a44a067a30a5a8b7d0,
         type: 3}
@@ -489,6 +489,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: RangeSlime
+      objectReference: {fileID: 0}
+    - target: {fileID: 2780501058748862415, guid: 704f41394b830904981f588683b94994,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3026576654713740985, guid: 704f41394b830904981f588683b94994,
         type: 3}
