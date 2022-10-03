@@ -43,6 +43,7 @@ public class GameSystem : MonoBehaviour
 
     void Awake()
     {
+        GameRunning = false;
         mainCamera = Camera.main;
         analogGlitch = mainCamera.GetComponent<AnalogGlitch>();
         Instance = this;
@@ -58,6 +59,7 @@ public class GameSystem : MonoBehaviour
     public void StartGame()
     {
         GameRunning = true;
+        Controller.Instance.m_IsPaused = false;
         
         Cursor.lockState = CursorLockMode.Locked;
         Cursor.visible = false;
