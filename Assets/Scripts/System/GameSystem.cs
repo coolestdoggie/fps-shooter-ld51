@@ -126,7 +126,7 @@ public class GameSystem : MonoBehaviour
         
         Controller.Instance.DisplayCursor(true);
         Controller.Instance.CanPause = false;
-        FinalScoreUI.Instance.Display();
+        //FinalScoreUI.Instance.Display();
     }
 
 //     public void NextLevel()
