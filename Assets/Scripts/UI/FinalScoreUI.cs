@@ -16,18 +16,9 @@ public class FinalScoreUI : MonoBehaviour
     public void Display()
     {
         gameObject.SetActive(true);
+        Controller.Instance.DisplayCursor(true);
+        UIAudioPlayer.PlayNegative();
+        GameSystem.Instance.StopTimer();
         
-        //float time = GameSystem.Instance.RunTime;
-        // int targetDestroyed = GameSystem.Instance.DestroyedTarget;
-        // int totalTarget = GameSystem.Instance.TargetCount;
-        // int missedTarget = totalTarget - targetDestroyed;
-        //float penaltyAmount = GameSystem.Instance.TargetMissedPenalty * missedTarget;
-            
-        //TargetDestroyed.text = targetDestroyed + "/" + totalTarget;
-       // TimeSpent.text = time.ToString("N2") + "s";
-       //Penalty.text = missedTarget +"*"+ GameSystem.Instance.TargetMissedPenalty.ToString("N2")+"s = "+ penaltyAmount.ToString("N2") + "s";
-        //FinalTime.text = (time + penaltyAmount).ToString("N2") + "s";
-
-        //FinalScore.text = GameSystem.Instance.Score.ToString("N");
     }
 }
