@@ -11,6 +11,7 @@ public class AttackAI : MonoBehaviour
     public Projectile projectilePrefab;
     private GameObject _player;
     private float _attackedAt = 0.0f;
+    [SerializeField] private Animator animator;
 
     void Start()
     {
@@ -40,6 +41,11 @@ public class AttackAI : MonoBehaviour
             Weapon weapon = new Weapon();
             weapon.EndPoint = launchPoint;
             p.Launch(weapon, dir, launchForce);
+        }
+
+        if (animator != null)
+        {
+            animator.SetTrigger("punch");
         }
         _attackedAt = Time.time;
     }
