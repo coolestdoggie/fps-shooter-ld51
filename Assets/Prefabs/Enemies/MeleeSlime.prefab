@@ -2449,6 +2449,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e1575345c68c4246b520c7e77b4a161, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  agroDistance: 15
 --- !u!195 &4709352810861180665
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -2483,8 +2484,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3025188a0d0e62f409a2278dc7d0e85c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  launchForce: 40
-  cooldown: 1
+  launchForce: 50
+  cooldown: 0.7
   launchCount: 1
   launchDistance: 2
   spreadAngle: 1

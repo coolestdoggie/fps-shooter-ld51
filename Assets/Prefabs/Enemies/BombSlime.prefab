@@ -167,6 +167,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0e1575345c68c4246b520c7e77b4a161, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  agroDistance: 20
 --- !u!195 &5289648657943300930
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -201,7 +202,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3025188a0d0e62f409a2278dc7d0e85c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  launchForce: 40
+  launchForce: 60
   cooldown: 2
   launchCount: 1
   launchDistance: 2
@@ -209,6 +210,7 @@ MonoBehaviour:
   launchPoint: {fileID: 2600137981729571950}
   projectilePrefab: {fileID: 672515860094952321, guid: f16bebb024ce4cd43a38033157999d6a,
     type: 3}
+  animator: {fileID: 0}
 --- !u!114 &5289648657943300937
 MonoBehaviour:
   m_ObjectHideFlags: 0
