@@ -23,7 +23,7 @@ public class MoveAI : MonoBehaviour
         float distance = Vector3.Distance(enemyPos, playerPos);
         RaycastHit raycastHit = new RaycastHit();
         Physics.Linecast(enemyPos, playerPos, out raycastHit);
-        if (raycastHit.collider.CompareTag("Player"))
+        if (raycastHit.collider != null && raycastHit.collider.CompareTag("Player"))
         {
             isFollow = true;
         }
