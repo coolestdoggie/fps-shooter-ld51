@@ -43,7 +43,7 @@ public class Controller : MonoBehaviour
     public AudioClip LandingAudioClip;
     
     float m_VerticalSpeed = 0.0f;
-    bool m_IsPaused = false;
+    public bool m_IsPaused = false;
     int m_CurrentWeapon;
     
     float m_VerticalAngle, m_HorizontalAngle;

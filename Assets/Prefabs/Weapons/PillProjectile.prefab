@@ -48,7 +48,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: aee602de95ca2984ea95a028bcd1cdde, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  DestroyedOnHit: 0
+  DestroyedOnHit: 1
+  shouldDamagePlayer: 1
+  shouldDamageEnemy: 1
   TimeToDestroyed: 2.5
   ReachRadius: 3
   damage: 10
