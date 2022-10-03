@@ -50,7 +50,7 @@ MonoBehaviour:
   weaponType: 0
   fireRate: 2
   reloadTime: 1.5
-  clipSize: 1
+  clipSize: 2
   damage: 5
   ammoType: 0
   projectilePrefab: {fileID: 0}
