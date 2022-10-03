@@ -139,6 +139,11 @@ public class Weapon : MonoBehaviour
         }
     }
 
+    public void ResetBulletsToDefault()
+    {
+        m_ClipContent = clipSize;
+    }
+
     public void PickedUp(Controller c)
     {
         m_Owner = c;

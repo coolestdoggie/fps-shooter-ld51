@@ -93,14 +93,20 @@ public class Controller : MonoBehaviour
         m_CurrentWeapon = -1;
         ChangeWeapon();
 
-        for (int i = 0; i < startingAmmo.Length; ++i)
-        {
-            m_AmmoInventory[startingAmmo[i].ammoType] = startingAmmo[i].amount;
-        }
+        ResetBulletsCount();
 
         m_VerticalAngle = 0.0f;
         m_HorizontalAngle = transform.localEulerAngles.y;
     }
+
+    private void ResetBulletsCount()
+    {
+        for (int i = 0; i < startingAmmo.Length; ++i)
+        {
+            m_AmmoInventory[startingAmmo[i].ammoType] = startingAmmo[i].amount;
+        }
+    }
+
 
     void Update()
     {
@@ -295,6 +301,8 @@ public class Controller : MonoBehaviour
             m_CurrentWeapon = 0;
         
         m_Weapons[m_CurrentWeapon].gameObject.SetActive(true);
+        ResetBulletsCount();
+        m_Weapons[m_CurrentWeapon].ResetBulletsToDefault();
         m_Weapons[m_CurrentWeapon].Selected();
     }
 
