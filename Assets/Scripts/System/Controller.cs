@@ -197,7 +197,14 @@ public class Controller : MonoBehaviour
             Speed = move.magnitude / (PlayerSpeed * Time.deltaTime);
 
             if (Input.GetButton("Reload"))
+            {
+                if (m_Weapons[m_CurrentWeapon].ammoType == 16) //Melee
+                {
+                    return;
+                }
+                
                 m_Weapons[m_CurrentWeapon].Reload();
+            }
 
             // if (Input.GetAxis("Mouse ScrollWheel") < 0)
             // {
