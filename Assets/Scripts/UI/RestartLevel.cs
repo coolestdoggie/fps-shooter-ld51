@@ -8,9 +8,9 @@ public class RestartLevel : MonoBehaviour
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
-    public void NextLevel()
-    {
-        UIAudioPlayer.PlayPositive();
-        GameSystem.Instance.NextLevel();
-    }
+    // public void NextLevel()
+    // {
+    //     UIAudioPlayer.PlayPositive();
+    //     GameSystem.Instance.NextLevel();
+    // }
 }
