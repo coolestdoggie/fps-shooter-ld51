@@ -7,12 +7,6 @@ public class FinalScoreUI : MonoBehaviour
 {
     public static FinalScoreUI Instance { get; private set; }
     
-    //public Text TargetDestroyed;
-    //public Text Penalty;
-   // public Text TimeSpent;
-    //public Text FinalTime;
-    //public Text FinalScore;
-    
     void Awake()
     {
         Instance = this;

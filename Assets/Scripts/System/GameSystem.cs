@@ -1,5 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using DG.Tweening;
+using Kino;
 using UnityEditor;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -21,6 +23,9 @@ public class GameSystem : MonoBehaviour
     public AudioClip EndGameSound;
     
     public float RunTime => m_Timer;
+
+    public float lineGlitchTime = 0.25f;
+    public float colorGlitchTime = 0.25f;
     public int TargetCount => m_TargetCount;
     public int DestroyedTarget => m_TargetDestroyed;
     //public int Score => m_Score;
@@ -30,13 +35,16 @@ public class GameSystem : MonoBehaviour
     
     int m_TargetCount;
     int m_TargetDestroyed;
-
+    private Camera mainCamera;
+    private AnalogGlitch analogGlitch;
     public bool GameRunning { get; private set; }
 
     //int m_Score = 0;
 
     void Awake()
     {
+        mainCamera = Camera.main;
+        analogGlitch = mainCamera.GetComponent<AnalogGlitch>();
         Instance = this;
         foreach (var prefab in StartPrefabs)
         {
@@ -121,36 +129,36 @@ public class GameSystem : MonoBehaviour
         FinalScoreUI.Instance.Display();
     }
 
-    public void NextLevel()
-    {
-#if UNITY_EDITOR
-        //in editor if we didn't found the current episode or level, mean we are playing a test scene not part of the
-        //game database list, so calling next level is the same as restarting level
-        if (s_CurrentEpisode < 0 || s_CurrentLevel < 0)
-        {
-            var asyncOp = EditorSceneManager.LoadSceneAsyncInPlayMode(EditorSceneManager.GetActiveScene().path, new LoadSceneParameters(LoadSceneMode.Single));
-            return;
-        }
-#endif
-        
-        
-        s_CurrentLevel += 1;
-
-        if (GameDatabase.Instance.episodes[s_CurrentEpisode].scenes.Length <= s_CurrentLevel)
-        {
-            s_CurrentLevel = 0;
-            s_CurrentEpisode += 1;
-        }
-
-        if (s_CurrentEpisode >= GameDatabase.Instance.episodes.Length)
-            s_CurrentEpisode = 0;
-
-#if UNITY_EDITOR
-        var op = EditorSceneManager.LoadSceneAsyncInPlayMode(GameDatabase.Instance.episodes[s_CurrentEpisode].scenes[s_CurrentLevel], new LoadSceneParameters(LoadSceneMode.Single));
-#else
-        SceneManager.LoadScene(GameDatabase.Instance.episodes[s_CurrentEpisode].scenes[s_CurrentLevel]);
-#endif
-    }
+//     public void NextLevel()
+//     {
+// #if UNITY_EDITOR
+//         //in editor if we didn't found the current episode or level, mean we are playing a test scene not part of the
+//         //game database list, so calling next level is the same as restarting level
+//         if (s_CurrentEpisode < 0 || s_CurrentLevel < 0)
+//         {
+//             var asyncOp = EditorSceneManager.LoadSceneAsyncInPlayMode(EditorSceneManager.GetActiveScene().path, new LoadSceneParameters(LoadSceneMode.Single));
+//             return;
+//         }
+// #endif
+//         
+//         
+//         s_CurrentLevel += 1;
+//
+//         if (GameDatabase.Instance.episodes[s_CurrentEpisode].scenes.Length <= s_CurrentLevel)
+//         {
+//             s_CurrentLevel = 0;
+//             s_CurrentEpisode += 1;
+//         }
+//
+//         if (s_CurrentEpisode >= GameDatabase.Instance.episodes.Length)
+//             s_CurrentEpisode = 0;
+//
+// #if UNITY_EDITOR
+//         var op = EditorSceneManager.LoadSceneAsyncInPlayMode(GameDatabase.Instance.episodes[s_CurrentEpisode].scenes[s_CurrentLevel], new LoadSceneParameters(LoadSceneMode.Single));
+// #else
+//         SceneManager.LoadScene(GameDatabase.Instance.episodes[s_CurrentEpisode].scenes[s_CurrentLevel]);
+// #endif
+//     }
 
     void RetrieveTargetsCount()
     {
@@ -201,6 +209,7 @@ public class GameSystem : MonoBehaviour
             
             if (m_Timer <= 0)
             {
+                Glitch();
                 Controller.Instance.ChangeWeapon();
                 ResetTimer();
             }
@@ -215,6 +224,14 @@ public class GameSystem : MonoBehaviour
        
         if(FullscreenMap.Instance.gameObject.activeSelf)
             FullscreenMap.Instance.UpdateForPlayerTransform(playerTransform);
+    }
+    
+    void Glitch()
+    {
+        DOTween.To(() => analogGlitch.scanLineJitter, x => analogGlitch.scanLineJitter = x, 1.0f, lineGlitchTime)
+            .OnComplete(() => DOTween.To(() => analogGlitch.scanLineJitter, x => analogGlitch.scanLineJitter= x, 0.0f, lineGlitchTime));
+        DOTween.To(() => analogGlitch.colorDrift, x => analogGlitch.colorDrift = x, 1.0f, colorGlitchTime)
+            .OnComplete(() => DOTween.To(() => analogGlitch.colorDrift, x => analogGlitch.colorDrift= x, 0.0f, colorGlitchTime));
     }
 
     // public float GetFinalTime()
